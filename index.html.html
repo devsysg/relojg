@@ -1,0 +1,161 @@
+
+
+<head>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+
+
+<body onload="reloj1(), reloj2(), reloj3()">
+
+  <div class=""></div>
+
+       <div id="cajareloj" class="text-center"
+       style="text-align:center;
+       margin-left:auto;margin-right:auto">
+          <div class=""> &nbsp; </div>
+
+          <h3>Hora > <span id="reloj"></span></h3>
+
+          <div class=""> &nbsp; </div>
+       </div>
+
+      <div style="border-style:dashed;
+      width:200px;height:30px;text-align:center;
+      margin-left:auto;margin-right:auto">
+      Tiempo restante:
+      </div>
+
+       <div id="H1"
+       style="border-style:dashed;
+       width:200px;height:30px;text-align:center;
+       margin-left:auto;margin-right:auto";>
+       </div>
+
+       <div class=""> &nbsp; </div>
+
+       <div style="border-style:dashed;
+       width:200px;height:30px;text-align:center;
+       margin-left:auto;margin-right:auto">
+         Voy a dormir:
+       </div>
+
+       <div id="H2"
+       style="border-style:dashed;
+       width:200px;height:30px;text-align:center;
+       margin-left:auto;margin-right:auto";>
+       </div>
+
+</body>
+
+<script type="text/javascript">
+
+function reloj(){
+
+   if (hora = 0){
+     horaH1=hora;
+   }
+   else horaH1=hora-12;
+
+   minutoH1 = 60 - minuto;
+   if (minutoH1<10) minutoH1 = '0'+minuto;
+
+   segundoH1 = 60 - segundo;
+   if (segundoH1<10) segundoH1= '0'+segundo;
+
+   horarioH1 = horaH1 + ":" + minutoH1 + ":" + segundoH1 ;
+
+   document.getElementById('H1').innerHTML = horarioH1
+   setTimeout('reloj()',1000)
+}
+
+function reloj1()
+{
+    fecha = new Date()
+
+    hora = fecha.getHours()
+    if (hora>12) {
+      nomeclatura=' pm';
+      hora= hora-12;}
+    else
+      nomeclatura=' am';
+
+      minuto = fecha.getMinutes()
+    if (minuto<10) minuto= '0'+minuto;
+
+      segundo = fecha.getSeconds()
+    if (segundo<10) segundo= '0'+segundo;
+      horario = hora + ":" + minuto + ":" + segundo + nomeclatura;
+
+    document.getElementById('reloj').innerHTML = horario
+    setTimeout('reloj1()',1000)
+}
+
+function reloj2(){
+
+  if (hora >= 1 && hora < 6 ) {
+      hora2 = -hora ;
+      signo = "";
+      minuto2 = minuto;
+      segundo2= segundo;
+
+  } else if (hora > 6 && hora <= 11 ) {
+      hora2 = 11 - hora;
+      signo = "";
+
+      if (minuto == 0) {
+        minuto2 = 59;
+      } else if ( minuto > 0) {
+          minuto2 = 60- minuto;
+          if (minuto2<10) minuto2= '0'+minuto2;
+      }
+
+      segundo2 = 60 - segundo;
+      if (segundo2<10) segundo2= '0'+segundo2;
+
+  } else if (hora == 12 ){
+      signo = "-";
+      horaH1 = 12 - hora;
+      minutoH1 = minuto;
+      segundoH1= segundo;
+  }
+
+
+ horarioH1 = signo + hora2 + ":" + minuto2 + ":" + segundo2 ;
+
+ document.getElementById('H1').innerHTML = horarioH1
+ setTimeout('reloj2()',1000)
+}
+
+function reloj3()
+{
+
+    if (hora >= 1 && hora < 6 ) {
+      hora3 = 7+hora2;
+
+      minuto3 = 60-minuto2;
+      if (minuto3<10) minuto3= '0'+minuto3;
+
+      segundo3 = 60 -segundo2;
+      if (segundo3<10) segundo3= '0'+segundo3;
+
+
+    } else if (hora > 6 && hora <= 11 ) {
+      hora3 = 8-hora2;
+      minuto3 = minuto2;
+      segundo3 = segundo2;
+    }
+
+    horario = hora3 + ":" + minuto3 + ":" + segundo3;
+
+    document.getElementById('H2').innerHTML = horario
+    setTimeout('reloj3()',1000)
+}
+
+
+
+
+
+</script>
+<!--
+<script type="text/javascript" src="../js/index.js" charset="utf-8"></script>
+-->
